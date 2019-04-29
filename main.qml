@@ -7,6 +7,10 @@ ApplicationWindow {
     height: 480
     title: qsTr("Comandos del usuario")
 
+    ListModel {
+        id: recordsModel
+    }
+
     StackView {
         id: stackView
         initialItem: "commands.qml"

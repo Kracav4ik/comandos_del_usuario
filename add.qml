@@ -26,6 +26,7 @@ Item {
             text: qsTr("Сохранить")
             onClicked: {
                 stackView.pop()
+                recordsModel.append({"name": name.text, "image": image.text})
             }
         }
     }
