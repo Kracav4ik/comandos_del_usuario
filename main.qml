@@ -1,9 +1,15 @@
-import QtQuick 2.12
-import QtQuick.Window 2.12
+import QtQuick 2.0
+import QtQuick.Controls 2.0
 
-Window {
+ApplicationWindow {
     visible: true
     width: 640
     height: 480
     title: qsTr("Comandos del usuario")
+
+    StackView {
+        id: stackView
+        initialItem: "commands.qml"
+        anchors.fill: parent
+    }
 }
