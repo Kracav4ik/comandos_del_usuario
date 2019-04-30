@@ -17,11 +17,9 @@ Item {
             model: recordsModel
             Layout.fillHeight: true
             Layout.fillWidth: true
-            delegate: RowLayout {
+            delegate: CommandDelegate {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                Image { source: model.image }
-                Text { text : model.name }
             }
             ScrollBar.vertical: ScrollBar{ }
         }

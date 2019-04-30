@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>commands.qml</file>
         <file>add.qml</file>
+        <file>CommandDelegate.qml</file>
     </qresource>
 </RCC>
