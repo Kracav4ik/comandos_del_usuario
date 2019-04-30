@@ -16,4 +16,19 @@ ApplicationWindow {
         initialItem: "commands.qml"
         anchors.fill: parent
     }
+    function appendItem(name, image) {
+        recordsModel.append({name: name, image: image})
+        let model = []
+        for (let i = 0; i < recordsModel.count; ++i) {
+            let el = recordsModel.get(i)
+            model.push({name: el.name, image: el.image})
+        }
+        saveload.saveModelText(JSON.stringify(model))
+    }
+    Component.onCompleted: {
+        let model = JSON.parse(saveload.loadModelText());
+        for (let el of model) {
+            recordsModel.append(el)
+        }
+    }
 }

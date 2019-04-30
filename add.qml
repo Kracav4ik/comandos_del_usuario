@@ -57,7 +57,7 @@ Item {
                 }
 
                 stackView.pop()
-                recordsModel.append({"name": nameField.text.trim(), "image": imageField.text})
+                appendItem(nameField.text.trim(), imageField.text)
             }
         }
     }
