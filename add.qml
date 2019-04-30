@@ -44,14 +44,20 @@ Item {
             id: nameField
             Layout.fillWidth: true
             selectByMouse: true
+            validator: RegExpValidator { regExp: /\s*\S.*/ }
+            placeholderText: qsTr("Название не может быть пустым")
         }
         Button {
             id: save
             Layout.fillWidth: true
             text: qsTr("Сохранить")
             onClicked: {
+                if (!nameField.acceptableInput) {
+                    return
+                }
+
                 stackView.pop()
-                recordsModel.append({"name": nameField.text, "image": imageField.text})
+                recordsModel.append({"name": nameField.text.trim(), "image": imageField.text})
             }
         }
     }
