@@ -13,14 +13,17 @@ Item {
                 stackView.push("add.qml")
         }
         ListView {
+            clip: true
             model: recordsModel
             Layout.fillHeight: true
+            Layout.fillWidth: true
             delegate: RowLayout {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                Text {text : "name is " + name}
-                Text {text : "image is " + image}
+                Image { source: model.image }
+                Text { text : model.name }
             }
+            ScrollBar.vertical: ScrollBar{ }
         }
     }
 }
