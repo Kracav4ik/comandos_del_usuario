@@ -35,30 +35,23 @@ RowLayout {
         interval: 500;
         running: switcher.checked
         onTriggered: {
+            var succes = Math.random() < 0.5
             switcher.checked = false
-            root.state = "Normal"
+
+            root.state = succes ? "Normal" : "Error"
         }
     }
 
     states: [
-        State {
-            name: "Normal"
-            StateChangeScript {
-                script: {console.log("*** enter state Normal");}
-            }
-        },
-        State {
-            name: "InProgress"
-            StateChangeScript {
-                script: {console.log("*** enter state InProgress");}
-            }
-        }
+        State { name: "Normal" },
+        State { name: "InProgress"; PropertyChanges { target: switcher; checkable: false } },
+        State { name: "Error" }
     ]
     state: "Normal"
 
     transitions: [
         Transition {
-            from: "Normal"
+            from: "*"
             to: "InProgress"
             SequentialAnimation {
                 ScriptAction { script: { progress.progressValue = 0; progress.color = "#80ff80"; progress.opacity = 1; } }
@@ -71,6 +64,14 @@ RowLayout {
             SequentialAnimation {
                 PropertyAnimation { target: progress; property: "color"; to: "#00ff00"; duration: 50 }
                 PropertyAnimation { target: progress; property: "opacity"; to: 0; duration: 200; easing.type: Easing.OutQuad  }
+            }
+        },
+        Transition {
+            from: "InProgress"
+            to: "Error"
+            SequentialAnimation {
+                PropertyAnimation { target: progress; property: "color"; to: "#ff0000"; duration: 50 }
+                PropertyAnimation { target: progress; property: "color"; to: "#ff8080"; duration: 200; easing.type: Easing.OutQuad  }
             }
         }
     ]
