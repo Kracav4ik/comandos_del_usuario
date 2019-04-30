@@ -31,7 +31,7 @@ Item {
                 Layout.preferredHeight: imageField.height
                 text: "📁"
                 padding: 0
-                font.pixelSize: imageField.height/2
+                font.pixelSize: imageField.height / 2
                 onClicked: {
                     fileDialog.open()
                 }
@@ -47,17 +47,29 @@ Item {
             validator: RegExpValidator { regExp: /\s*\S.*/ }
             placeholderText: qsTr("Название не может быть пустым")
         }
-        Button {
-            id: save
-            Layout.fillWidth: true
-            text: qsTr("Сохранить")
-            onClicked: {
-                if (!nameField.acceptableInput) {
-                    return
+        RowLayout {
+            Button {
+                Layout.preferredWidth: save.height
+                Layout.preferredHeight: save.height
+                text: "‹"
+                padding: 0
+                font.pixelSize: save.height
+                onClicked: {
+                    stackView.pop()
                 }
+            }
+            Button {
+                id: save
+                Layout.fillWidth: true
+                text: qsTr("Сохранить")
+                onClicked: {
+                    if (!nameField.acceptableInput) {
+                        return
+                    }
 
-                stackView.pop()
-                appendItem(nameField.text.trim(), imageField.text)
+                    stackView.pop()
+                    appendItem(nameField.text.trim(), imageField.text)
+                }
             }
         }
     }

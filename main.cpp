@@ -8,6 +8,9 @@ int main(int argc, char *argv[]) {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Comandos Inc");
+    app.setOrganizationDomain("usuario.com");
+    app.setApplicationName("Comandos del usuario");
 
     QQmlApplicationEngine engine;
     SaveLoad sl;
